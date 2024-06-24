@@ -31568,7 +31568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 671069194}
-  remainingTime: 900
+  remainingTime: 15
 --- !u!114 &1607196156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34460,7 +34460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1974196658}
-  remainingTime: 900
+  remainingTime: 15
 --- !u!114 &1767020331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37542,7 +37542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 750816003}
-  remainingTime: 900
+  remainingTime: 15
 --- !u!114 &1992635752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39109,7 +39109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1423940042}
-  remainingTime: 900
+  remainingTime: 15
 --- !u!114 &2096072916
 MonoBehaviour:
   m_ObjectHideFlags: 0
