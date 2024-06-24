@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
             timerText.color = Color.red;
 
 
-            SceneManager.LoadScene("Final");
+            SceneManager.LoadScene("Final_Mal");
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60);
