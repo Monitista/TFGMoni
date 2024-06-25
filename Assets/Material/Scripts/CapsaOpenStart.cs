@@ -3,32 +3,41 @@ using UnityEngine;
 public class CapsaOpenStart : MonoBehaviour
 {
     public Animator animator; // Referencia al Animator
-    public ParticleSystem particleSystem; // Referencia al sistema de partículas
+    public new ParticleSystem particleSystem; // Referencia al sistema de partículas
     public GameObject[] prefabsToShow; // Array de prefabs para mostrar
     public string animationTriggerName; // Nombre del trigger de animación
 
-    private void OnTriggerEnter(Collider other)
+    // Función para cambiar de Prefab y activar animaciones, partículas y mostrar otros prefabs
+    public void OpenBox()
     {
-        // Verifica que el objeto que entra en el trigger es el jugador (puedes usar tags o layers)
-        if (other.CompareTag("Player"))
+        // Activar la animación
+        if (animator != null)
         {
-            // Activar la animación
-            if (animator != null)
-            {
-                animator.SetTrigger(animationTriggerName);
-            }
+            animator.SetTrigger(animationTriggerName);
+        }
 
-            // Activar las partículas
-            if (particleSystem != null)
-            {
-                particleSystem.Play();
-            }
+        // Activar las partículas
+        if (particleSystem != null)
+        {
+            var emission = particleSystem.emission;
+            emission.enabled = true;
+            particleSystem.Play();
+        }
 
-            // Mostrar los prefabs ocultos
-            foreach (GameObject prefab in prefabsToShow)
-            {
-                prefab.SetActive(true);
-            }
+        // Mostrar los prefabs ocultos
+        foreach (GameObject prefab in prefabsToShow)
+        {
+            prefab.SetActive(true);
+        }
+    }
+
+    // Función para desactivar la emisión de partículas al inicio
+    void Start()
+    {
+        if (particleSystem != null)
+        {
+            var emission = particleSystem.emission;
+            emission.enabled = false;
         }
     }
 }
