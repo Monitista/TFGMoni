@@ -16,7 +16,6 @@ public class PuzzlePiece : MonoBehaviour
         if (Vector3.Distance(transform.position, correctSlot.position) < 0.1f)
         {
             SetIsInCorrectPosition(true);
-            Debug.Log("Bieen");
         }
         else
         {
