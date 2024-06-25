@@ -47,14 +47,16 @@ public class LockEnd : MonoBehaviour
             {
                 animator.SetTrigger(animationTriggerName);
                 hasTriggeredAnimation = true;
-            }
 
-            if (hasTriggeredAnimation)
-            {
-                SceneManager.LoadScene("Final_Bien");
+                // Esperar 5 segundos antes de cargar la escena
+                StartCoroutine(LoadNextSceneWithDelay(3.0f));
             }
         }
     }
 
-  
+    private IEnumerator LoadNextSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("Final_Bien");
+    }
 }
