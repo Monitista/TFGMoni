@@ -11,10 +11,6 @@ public class LockGemma : MonoBehaviour
         {
             Debug.LogError("Correct slot is not assigned.");
         }
-        else
-        {
-            Debug.Log("Correct slot assigned.");
-        }
     }
 
     void LateUpdate()
@@ -27,7 +23,7 @@ public class LockGemma : MonoBehaviour
         if (correctSlot == null) return;
 
         // Verificar si la pieza está en el slot correcto
-        if (Vector3.Distance(transform.position, correctSlot.position) < 2f) // Ajustar el valor según sea necesario
+        if (Vector3.Distance(transform.position, correctSlot.position) < 0.1f) // Ajustar el valor según sea necesario
         {
             SetIsInCorrectPosition(true);
         }
@@ -37,16 +33,13 @@ public class LockGemma : MonoBehaviour
         }
     }
 
-
-
-
     public void SetIsInCorrectPosition(bool value)
     {
         isInCorrectPositionGem = value;
+
         // Llamar a una función en el LockEnd para verificar la pieza específica
         if (LockEnd.Instance != null)
         {
-            Debug.Log("Calling CheckSpecificPiece from LockEnd.");
             LockEnd.Instance.CheckSpecificPiece();
         }
         else

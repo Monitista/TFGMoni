@@ -10,27 +10,15 @@ public class LockEnd : MonoBehaviour
     public Animator animator; // Referencia al Animator
     public string animationTriggerName; // Nombre del trigger de animación
 
-    public new ParticleSystem particleSystem; // Referencia al sistema de partículas
+    private bool hasTriggeredAnimation = false; // Bandera para controlar la activación de la animación
 
     void Awake()
     {
         Instance = this;
-        Debug.Log("LockEnd instance assigned.");
     }
 
     void Start()
     {
-        if (particleSystem != null)
-        {
-            var emission = particleSystem.emission;
-            emission.enabled = false;
-            Debug.Log("Particle system initialized.");
-        }
-        else
-        {
-            Debug.LogError("Particle system is not assigned.");
-        }
-
         if (specificPiece == null)
         {
             Debug.LogError("Specific piece is not assigned.");
@@ -50,54 +38,23 @@ public class LockEnd : MonoBehaviour
     public void CheckSpecificPiece()
     {
         if (specificPiece == null)
-        {
-            Debug.LogError("Specific piece is not assigned.");
             return;
-        }
 
         if (specificPiece.IsInCorrectPositionGema())
         {
-            Debug.Log("Specific piece is in the correct position");
 
-            // Activar las partículas
-            if (particleSystem != null)
-            {
-                var emission = particleSystem.emission;
-                emission.enabled = true;
-                particleSystem.Play();
-                Debug.Log("Particle system activated");
-            }
-            else
-            {
-                Debug.LogError("Particle system is not assigned.");
-            }
-
-            // Activar la animación
-            if (animator != null)
+            if (!hasTriggeredAnimation && animator != null)
             {
                 animator.SetTrigger(animationTriggerName);
-                Debug.Log("Animation triggered");
+                hasTriggeredAnimation = true;
             }
-            else
+
+            if (hasTriggeredAnimation)
             {
-                Debug.LogError("Animator is not assigned.");
+                SceneManager.LoadScene("Final_Bien");
             }
-
-            // Cambiar a otra escena después de un pequeño retraso
-            StartCoroutine(LoadNextSceneWithDelay(2.0f)); // Cambia el tiempo de retraso según sea necesario
-        }
-        else
-        {
-            Debug.Log("Specific piece is not in correct position.");
-            Debug.Log("Distance: " + Vector3.Distance(specificPiece.transform.position, specificPiece.correctSlot.position));
         }
     }
 
-
-
-    private IEnumerator LoadNextSceneWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("Final_Bien");
-    }
+  
 }
