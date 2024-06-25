@@ -11,6 +11,7 @@ public class PuzzleManager : MonoBehaviour
     public Transform rewardSpawnPoint; // Punto de aparición del objeto de recompensa
 
     private GameObject rewardObject; // Referencia al objeto de recompensa instanciado
+    private bool particlesActivated = false; // Bandera para controlar si las partículas ya han sido activadas
 
     void Awake()
     {
@@ -45,9 +46,12 @@ public class PuzzleManager : MonoBehaviour
             }
         }
 
-        // Si todas las piezas están en su posición correcta, activar la recompensa
-        if (allPiecesCorrect)
+        // Si todas las piezas están en su posición correcta y las partículas no se han activado aún, activar la recompensa y las partículas
+        if (allPiecesCorrect && !particlesActivated)
         {
+            rewardObject.SetActive(true);
+            particlesActivated = true; // Marcar las partículas como activadas
+
             // Activar las partículas
             if (particleSystem != null)
             {
@@ -55,10 +59,6 @@ public class PuzzleManager : MonoBehaviour
                 emission.enabled = true;
                 particleSystem.Play();
             }
-
-
-            rewardObject.SetActive(true);
         }
     }
-
 }
