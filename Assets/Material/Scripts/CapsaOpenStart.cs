@@ -6,6 +6,7 @@ public class CapsaOpenStart : MonoBehaviour
     public new ParticleSystem particleSystem; // Referencia al sistema de partículas
     public GameObject[] prefabsToShow; // Array de prefabs para mostrar
     public string animationTriggerName; // Nombre del trigger de animación
+    public Timer[] timer; // Referencia al script Timer
 
     // Función para cambiar de Prefab y activar animaciones, partículas y mostrar otros prefabs
     public void OpenBox()
@@ -28,6 +29,12 @@ public class CapsaOpenStart : MonoBehaviour
         foreach (GameObject prefab in prefabsToShow)
         {
             prefab.SetActive(true);
+        }
+
+        // Iniciar el temporizador
+        foreach (Timer prefab in timer)
+        {
+            prefab.StartTimer();
         }
     }
 
