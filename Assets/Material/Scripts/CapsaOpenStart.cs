@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CapsaOpenStart : MonoBehaviour
 {
+    public GameObject boton; // Array de prefabs para mostrar
     public Animator animator; // Referencia al Animator
     public new ParticleSystem particleSystem; // Referencia al sistema de partículas
     public GameObject[] prefabsToShow; // Array de prefabs para mostrar
@@ -35,6 +36,11 @@ public class CapsaOpenStart : MonoBehaviour
         foreach (Timer prefab in timer)
         {
             prefab.StartTimer();
+        }
+
+        if (boton != null)
+        {
+            boton.gameObject.SetActive(false);
         }
     }
 
