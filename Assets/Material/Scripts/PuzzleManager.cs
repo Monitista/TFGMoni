@@ -39,7 +39,7 @@ public class PuzzleManager : MonoBehaviour
         // Verificar cada pieza del rompecabezas
         foreach (var piece in puzzlePieces)
         {
-            if (!piece.IsInCorrectPosition())
+            if (!piece.isInCorrectPositionPieces())
             {
                 allPiecesCorrect = false;
                 break;

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PuzzlePiece : MonoBehaviour
+public class LockGemma : MonoBehaviour
 {
     public Transform correctSlot; // Referencia al slot correcto donde debe colocarse la pieza
-    private bool isInCorrectPositionPiece = false;
+    private bool isInCorrectPositionGem = false;
 
     void LateUpdate()
     {
@@ -26,13 +26,13 @@ public class PuzzlePiece : MonoBehaviour
 
     public void SetIsInCorrectPosition(bool value)
     {
-        isInCorrectPositionPiece = value;
+        isInCorrectPositionGem = value;
         // Llamar a una función en el PuzzleManager para verificar todas las piezas
         PuzzleManager.Instance.CheckAllPieces();
     }
 
-    public bool isInCorrectPositionPieces()
+    public bool isInCorrectPositionGema()
     {
-        return isInCorrectPositionPiece;
+        return isInCorrectPositionGem;
     }
 }
