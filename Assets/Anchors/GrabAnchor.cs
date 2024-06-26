@@ -12,7 +12,7 @@ using UnityEngine.Windows;
 public class GrabAnchor : MonoBehaviour
 {
 
-    HandGrabInteractable grabbable;
+    public HandGrabInteractable grabbable;
 
     public string PrefsName;
 
@@ -36,7 +36,12 @@ public class GrabAnchor : MonoBehaviour
     }
     void OnEnable()
     {
-        grabbable = GetComponentInChildren<HandGrabInteractable>();
+        if (grabbable == null)
+        {
+            grabbable = GetComponentInChildren<HandGrabInteractable>();
+            
+
+        }
         grabbable.WhenStateChanged += OnStateChange;
     }
 

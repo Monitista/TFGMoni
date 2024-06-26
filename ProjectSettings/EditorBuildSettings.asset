@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: 1c4ed22621f55e94ca60d142c0696625
+  - enabled: 0
+    path: Assets/Scenes/MainGameNoAnchos.unity
+    guid: 5e6fb633b161a10418b2c002fccdb1b7
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
-    guid: 5e6fb633b161a10418b2c002fccdb1b7
+    guid: dd9562561a1719f458f21bf38b08daa8
+  - enabled: 0
+    path: Assets/Scenes/MainAnchors.unity
+    guid: 38105b13cc7141f4d972a0398f5aa22a
   - enabled: 1
     path: Assets/Scenes/Final_Bien.unity
     guid: 306cd886324867740a7d7b62944522dc
