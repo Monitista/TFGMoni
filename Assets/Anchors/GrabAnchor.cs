@@ -12,7 +12,7 @@ using UnityEngine.Windows;
 public class GrabAnchor : MonoBehaviour
 {
 
-    GrabInteractable grabbable;
+    HandGrabInteractable grabbable;
 
     public string PrefsName;
 
@@ -36,7 +36,7 @@ public class GrabAnchor : MonoBehaviour
     }
     void OnEnable()
     {
-        grabbable = GetComponentInChildren<GrabInteractable>();
+        grabbable = GetComponentInChildren<HandGrabInteractable>();
         grabbable.WhenStateChanged += OnStateChange;
     }
 
@@ -44,6 +44,8 @@ public class GrabAnchor : MonoBehaviour
     {
        _position = transform.position;
         _rotation = transform.rotation;
+        if (PrefsName == "")
+            PrefsName = transform.name;
     }
 
     private void OnStateChange(InteractableStateChangeArgs args)
@@ -58,23 +60,21 @@ public class GrabAnchor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.Get(OVRInput.Button.One))
-        {
-            Erease();
-            transform.position = _position;
-            transform.rotation = _rotation;
-        }
+       
 
-        if(_grabbing && Mathf.Abs(_scaleInput)>0.01f)
-        {
-            _scale *= _scaleInput * Time.deltaTime * 1;
-            transform.localScale = _orgScale * _scale;
-        }
-
+      
 
     }
 
-   
+    private void LateUpdate()
+    {
+        var euler = transform.eulerAngles;
+        euler.x = 0;
+        euler.z = 0;
+        transform.eulerAngles = euler;
+    }
+
+
 
     void OnGrab()
     {
@@ -136,7 +136,7 @@ public class GrabAnchor : MonoBehaviour
 
     void SaveUuidToPlayerPrefs(Guid uuid)
     {
-       
+        Debug.Log(" save " + uuid.ToString());
         PlayerPrefs.SetString(PrefsName, uuid.ToString());
        
     }

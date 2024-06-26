@@ -15,12 +15,14 @@ public class SingleAnchorLoader : MonoBehaviour
 
     private void Awake()
     {
-        //_onLoadAnchor = OnLocalized;
+        _onLoadAnchor = OnLocalized;
     }
     // Start is called before the first frame update
     void Start()
     {
-       // LoadAnchorsByUuid();
+        if (PlayerPrefName == "")
+            PlayerPrefName = transform.name;
+        LoadAnchorsByUuid();
     }
 
   
@@ -67,10 +69,11 @@ public class SingleAnchorLoader : MonoBehaviour
     {
         if (!success)
         {
-            
+            Debug.Log("not local");
             return;
         }
 
+        Debug.Log("local");
         var pose = unboundAnchor.Pose;
         
 
@@ -81,8 +84,7 @@ public class SingleAnchorLoader : MonoBehaviour
         transform.position = spatialAnchor.transform.position;
         transform.rotation = spatialAnchor.transform.rotation;
 
-        float scale = PlayerPrefs.GetFloat(PlayerPrefName + "_scale", 1);
-        transform.localScale*=scale;
+       
 
     }
 
