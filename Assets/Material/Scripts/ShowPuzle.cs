@@ -5,7 +5,9 @@ public class ShowPuzle : MonoBehaviour
     public new ParticleSystem particleSystem; // Referencia al sistema de partículas
     public GameObject[] prefabsToShow; // Array de prefabs para mostrar
     public GameObject[] peces; // Array de prefabs para mostrar
-    public GameObject boton; // Array de prefabs para mostrar
+    public GameObject boton; // Referencia al botón para ocultar
+    public Animator animator; // Referencia al Animator
+    public string animationName; // Nombre de la animación a reproducir
 
     // Función para cambiar de Prefab y activar animaciones, partículas y mostrar otros prefabs
     public void ShowPuzzle()
@@ -24,15 +26,22 @@ public class ShowPuzle : MonoBehaviour
             prefab.SetActive(true);
         }
 
-        // Mostrar las piezas ocultos
+        // Mostrar las piezas ocultas
         foreach (GameObject prefab in peces)
         {
             prefab.SetActive(true);
         }
 
+        // Ocultar el botón
         if (boton != null)
         {
-            boton.gameObject.SetActive(false);
+            boton.SetActive(false);
+        }
+
+        // Reproducir la animación
+        if (animator != null && !string.IsNullOrEmpty(animationName))
+        {
+            animator.Play(animationName);
         }
     }
 
