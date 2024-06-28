@@ -7,7 +7,7 @@ public class ShowPuzle : MonoBehaviour
     public GameObject[] peces; // Array de prefabs para mostrar
     public GameObject boton; // Referencia al botón para ocultar
     public Animator animator; // Referencia al Animator
-    public string animationName; // Nombre de la animación a reproducir
+    public string animationTriggerName; // Nombre del trigger de animación
 
     // Función para cambiar de Prefab y activar animaciones, partículas y mostrar otros prefabs
     public void ShowPuzzle()
@@ -38,10 +38,10 @@ public class ShowPuzle : MonoBehaviour
             boton.SetActive(false);
         }
 
-        // Reproducir la animación
-        if (animator != null && !string.IsNullOrEmpty(animationName))
+        // Activar la animación
+        if (animator != null)
         {
-            animator.Play(animationName);
+            animator.SetTrigger(animationTriggerName);
         }
     }
 
